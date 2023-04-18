@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val showName = findViewById<TextView>(R.id.show_name)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.github.com/users/Komao6")
+            .baseUrl("https://api.github.com/users/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             githubApi.getUser("${getName}").enqueue( object : Callback<UserModule>{
                 override fun onResponse(call: Call<UserModule>, response: Response<UserModule>) {
                     val name = response.body()?.name
-                    showName.text = name
+                    showName.text = name.toString()
 
                     println(response.body())
                 }
